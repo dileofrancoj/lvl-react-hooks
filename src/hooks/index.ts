@@ -1,1 +1,1 @@
-export * from './useHello'
+export * from './useCounter'
