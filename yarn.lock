@@ -2577,8 +2577,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-"lvlup-js-utils@file:.yalc/lvlup-js-utils":
-  version "0.0.1"
+lvlup-js-utils@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/lvlup-js-utils/-/lvlup-js-utils-0.0.2.tgz#4eb6f1275184d84aab8ccf6b26fead9e32fefec6"
+  integrity sha512-DJz7/dwRgkg99LwFyweflNEDz9hGo/jr2ALPB2U1yRD2+1x0kV6K8jahaQy1vLyQUrp0ew+ZIbH16xpLfzthag==
 
 lz-string@^1.5.0:
   version "1.5.0"
