@@ -1,5 +1,3 @@
-// @ts-expect-error d.ts
-import { type AnyFunction } from 'lvlup-js-utils'
 import * as React from 'react'
 
 interface UseWindowsResize {
@@ -7,11 +5,7 @@ interface UseWindowsResize {
   height: number
 }
 
-interface WindowsResizeProps {
-  callback?: AnyFunction
-}
-
-export function useWindowsResize (callback?: WindowsResizeProps): UseWindowsResize {
+export function useWindowsResize (): UseWindowsResize {
   const [windowsSize, setWindowsSize] = React.useState({
     width: window.innerWidth,
     height: window.innerHeight
