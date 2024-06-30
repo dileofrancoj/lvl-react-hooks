@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { DemoComponent } from './DemoComponent'
 import { useEvent } from './hooks/useEvent'
 import { useThrottle } from './hooks/useThrottle'
 import { SendButton } from './SendButton'
@@ -28,6 +29,8 @@ function App (): JSX.Element {
       <SendButton onClick={onClick} />
       <br />
       <button onClick={onButtonClick}>Apretame</button>
+      <div style={{ height: '1000px', background: 'tomato' }}></div>
+      <DemoComponent />
     </>
   )
 }
