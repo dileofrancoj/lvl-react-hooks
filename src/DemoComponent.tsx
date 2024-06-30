@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { withTracking } from './withTracking'
 
 export const Component = (): JSX.Element => {
