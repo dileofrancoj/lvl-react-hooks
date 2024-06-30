@@ -36,4 +36,13 @@ describe('useWindowsResize', () => {
     fireEvent(window, new Event('resize'))
     expect(result.current).toStrictEqual({ width: 520, height: 610 })
   })
+  it('should cleanup event linstener on onmount', () => {
+    const { unmount } = renderHook(() => useWindowsResize())
+    const addEventListenerSpy = vi.spyOn(window, 'addEventListener')
+    const removeEventListener = vi.spyOn(window, 'removeEventListener')
+    expect(addEventListenerSpy).toBeDefined()
+    unmount() // desmontaje
+    // expect(removeEventListener).toHaveBeenCalled()
+    expect(removeEventListener).toHaveBeenCalledWith('resize', expect.any(Function))
+  })
 })
