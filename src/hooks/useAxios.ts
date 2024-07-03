@@ -52,19 +52,25 @@ export const useAxios = <T>(config: Config): UseAxios<T> => {
   const [error, setError] = React.useState<Error>('')
   const [loading, setLoading] = React.useState<boolean>(config.enabled ?? false)
 
-  // interceptors -> callback que se ejecuta en dos estadios (on request | on response)
-  instance.interceptors.response.use((response) => {
-    if (response.status === 200) { /* onSucessCallback() */ }
-    return response
-  }, async (error) => {
-    if (error.response.status === 500) {
-      if ((config?.onErrorCallback) != null) config?.onErrorCallback()
+  React.useEffect(() => {
+    // interceptors -> callback que se ejecuta en dos estadios (on request | on response)
+    // interceptor code
+    const requestInterceptor = instance.interceptors.response.use((response) => {
+      if (response.status === 200) { /* onSucessCallback() */ }
+      return response
+    }, async (error) => {
+      if (error.response.status === 500) {
+        if ((config?.onErrorCallback) != null) config?.onErrorCallback()
+      }
+      if (error.response.status === 401) {
+        if ((config?.onUnauthorizedCallback) != null) config?.onUnauthorizedCallback()
+      }
+      return await Promise.reject(error)
+    })
+    return () => {
+      instance.interceptors.response.eject(requestInterceptor)
     }
-    if (error.response.status === 401) {
-      if ((config?.onUnauthorizedCallback) != null) config?.onUnauthorizedCallback()
-    }
-  })
-
+  }, [])
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   function newAbortSignal () {
     const abortController = new AbortController()
